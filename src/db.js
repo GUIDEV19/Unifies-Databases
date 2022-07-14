@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('zscan_database','root', '4hBbQNVymFQX',{
-    port: 4914,
+const sequelize = new Sequelize('zscan_database','root', '',{
+    port: '',
     host: 'localhost',
     dialect: 'mysql'
 })
