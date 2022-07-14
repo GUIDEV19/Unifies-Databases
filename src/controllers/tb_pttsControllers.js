@@ -27,6 +27,8 @@ async function migrationPtts(pacientesUnificar, i, cnts_id){
         '${format_ptts_dhcg}',
         null
     );`)
+
+    console.log(format_ptts_dhcr)
 };
 
 module.exports = migrationPtts

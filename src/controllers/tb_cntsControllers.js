@@ -22,7 +22,7 @@ async function migrationCnts(pacientesUnificar, i){
         ${pacientesUnificar[i].cnts_city},
         '${formt_dhcr}',
         '${formt_dhcg}',
-        ${pacientesUnificar[i].cnts_dhdl}
+        null
     )`)
 };
 
