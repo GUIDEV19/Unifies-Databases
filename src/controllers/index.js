@@ -69,7 +69,7 @@ async function migraDados(){
 migraDados()  
 
 
-selectPttsUnificar()
+
 
 
 //funções de pesquisas
