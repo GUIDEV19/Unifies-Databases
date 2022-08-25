@@ -27,13 +27,13 @@ async function migraDados(){
 
     //funções e loop para inserção das tabelas de templates e exames
     const tb_exam_tb_ptlt =  await selectTb_exam_tb_ptltUnificar();
-/*     for(var i = 0; i < tb_exam_tb_ptlt.length; i++){
+    for(var i = 0; i < tb_exam_tb_ptlt.length; i++){
         await migrationTplt(tb_exam_tb_ptlt, i)
         const idtplt = await selectIdTpltZscanDatabase();
         const tb_exam = await selecetTb_examUnificar();
         
         await migrationExam(idtplt, tb_exam_tb_ptlt, i , tb_exam);
-    } */
+    } 
     
     // loop para inserção das tabelas de pacientes, contatos, documentos, relacional pacientes e documentos, laudos e imagens.
     for(var i = 0; i < pacientesUnificar.length; i++){
@@ -56,14 +56,17 @@ async function migraDados(){
         await migrationptts_has_docs(idpaciente, idDocs);
 
         //Migração de laudos
-        const tb_rprt =  await selectRprtEndPttsUnificar(pacientesUnificar, i)
+        const tb_rprt =  await selectRprtEndPttsUnificar(pacientesUnificar[i].ptts_code)
         await migrationRprt(tb_rprt, idpaciente)
 
         //Migração de imagens
         const tb_imgs = await selectImgsEndPttsUnificar(pacientesUnificar, i)
         await migrationImgs(tb_imgs,idpaciente)
 
-    }  
+    }
+    console.log('#####################') 
+    console.log('Processo Finalizado')
+    console.log('#####################')
 }
 //chamada do método executante.
 migraDados()  
@@ -74,7 +77,7 @@ migraDados()
 
 //funções de pesquisas
 async function selectPttsUnificar(){
-    const [pacientesUnificar] = await unificar.query(`select * from  tb_ptts as a inner join tb_cnts as b on a.ptts_code = b.cnts_code where a.ptts_dhcr like "2022-07-02%";`)
+    const [pacientesUnificar] = await unificar.query(`select * from  tb_ptts as a inner join tb_cnts as b on a.ptts_code = b.cnts_code where a.ptts_dhcr >= "2022-07-01";`)
     return pacientesUnificar
 }
 
@@ -128,8 +131,8 @@ async function selectEmpsEndCntsUnificar(){
     return tb_emps
 }
 
-async function selectRprtEndPttsUnificar(idpaciente, i){
-    const [tb_rprt] = await unificar.query(`select * from tb_rprt as a inner join tb_ptts as b on a.rprt_ptts = b.ptts_code inner join tb_exam as c on c.exam_code = a.rprt_exam where a.rprt_ptts = ${idpaciente[i].ptts_code};`)
+async function selectRprtEndPttsUnificar(idPaciente){
+    const [tb_rprt] = await unificar.query(`select * from tb_rprt as a inner join tb_ptts as b on a.rprt_ptts = b.ptts_code inner join tb_exam as c on c.exam_code = a.rprt_exam where a.rprt_ptts = ${idPaciente};`)
     return tb_rprt
 }
 
