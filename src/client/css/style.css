@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.containerPrincipal{
+    width: 800px;
+    height: 480px;
+    margin: 0 auto 0 auto;
+    background-image: url('../imgs/background.png');
+}
+
+.containerTitulo{
+    padding: 10px;
+    width: max-content;
+    height: max-content;
+    margin: 0 auto 0 auto;
+}
+
+.containerConteudo{
+    width: max-content;
+    height: max-content;
+    margin: 20px auto 0 auto;
+}
+#inputFile{
+    margin-top: 10px;
+    border-radius: 15px;
+    background-color:darkgrey;
+    padding: 5px;
+
+}
+
+#inputDate{
+    width: 150px;
+    height: 20px;
+    margin-top: 10px;
+    border-radius: 15px;
+    border: none;
+    background-color: darkgray;
+}
+
+#buttonConfirmar{
+    background-color: chartreuse;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    width: max-content;
+    height: max-content;
+    margin: 10px auto 0 auto;
+    cursor: pointer;
+}
+
+.textoErro{
+    color: transparent;
+}
