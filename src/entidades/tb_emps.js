@@ -1,6 +1,6 @@
 const zscan_database  = require('../db.js')
-const formataData = require('../handleData/formatDate.js')
-const migrationCnts = require('./tb_cntsControllers')
+const formataData = require('../utils/formatDate.js')
+const migrationCnts = require('./tb_cnts')
 
 async function migrationEmps(tb_emps){
     console.log('entrei na função')

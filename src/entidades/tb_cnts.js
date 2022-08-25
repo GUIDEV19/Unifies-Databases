@@ -1,5 +1,5 @@
 const zscan_database  = require('../db.js')
-const formataData = require('../handleData/formatDate.js')
+const formataData = require('../utils/formatDate.js')
 
 async function migrationCnts(pacientesUnificar, i){
     console.log(i)

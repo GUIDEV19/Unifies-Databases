@@ -1,5 +1,5 @@
 const zscan_database  = require('../db.js')
-const formataData = require('../handleData/formatDate.js')
+const formataData = require('../utils/formatDate.js')
 
 async function migrationDocs(tb_docs){
     const format_docs_dhcr = formataData(tb_docs[0].docs_dhcr);

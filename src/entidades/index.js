@@ -1,16 +1,16 @@
 const zscan_database  = require('../db.js')
 const unificar = require('../dbUnificar.js')
-const migrationPtts = require('./tb_pttsControllers.js');
-const migrationCnts = require('./tb_cntsControllers.js');
-const migrationDocs = require('./tb_docsControllers.js');
-const migrationptts_has_docs = require('./ptts_has_docsControllers.js');
-const migrationTplt = require('./tb_tpltController.js');
-const migrationExam = require('./tb_examControllers.js');
-const migrationDvcs = require('./tb_dvcsControllers.js');
-const migrationEmps = require('./tb_empsControllers.js');
-const migrationRprt = require('./tb_rprtControllers.js');
-const migrationImgs = require('./tb_imgsControllers.js');
-const formataData = require('../handleData/formatDate.js')
+const migrationPtts = require('./tb_ptts.js');
+const migrationCnts = require('./tb_cnts.js');
+const migrationDocs = require('./tb_docs.js');
+const migrationptts_has_docs = require('./ptts_has_docs.js');
+const migrationTplt = require('./tb_tplt.js');
+const migrationExam = require('./tb_exam.js');
+const migrationDvcs = require('./tb_dvcs.js');
+const migrationEmps = require('./tb_emps.js');
+const migrationRprt = require('./tb_rprt.js');
+const migrationImgs = require('./tb_imgs.js');
+const formataData = require('../utils/formatDate.js')
 
 //função administradora de migração
 async function migraDados(){
