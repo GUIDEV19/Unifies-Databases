@@ -1,24 +1,31 @@
 const zscan_database  = require('../db.js')
 const unificar = require('../dbUnificar.js')
-const migrationPtts = require('./tb_pttsControllers.js');
-const migrationCnts = require('./tb_cntsControllers.js');
-const migrationDocs = require('./tb_docsControllers.js');
-const migrationptts_has_docs = require('./ptts_has_docsControllers.js');
-const migrationTplt = require('./tb_tpltController.js');
-const migrationExam = require('./tb_examControllers.js');
-const migrationDvcs = require('./tb_dvcsControllers.js');
-const migrationEmps = require('./tb_empsControllers.js');
-const migrationRprt = require('./tb_rprtControllers.js');
+const migrationPtts = require('./tb_ptts.js');
+const migrationCnts = require('./tb_cnts.js');
+const migrationDocs = require('./tb_docs.js');
+const migrationptts_has_docs = require('./ptts_has_docs.js');
+const migrationTplt = require('./tb_tplt.js');
+const migrationExam = require('./tb_exam.js');
+const migrationDvcs = require('./tb_dvcs.js');
+const migrationEmps = require('./tb_emps.js');
+const migrationRprt = require('./tb_rprt.js');
+const migrationImgs = require('./tb_imgs.js');
+const formataData = require('../utils/formatDate.js')
 
-
+//função administradora de migração
 async function migraDados(){
+    //select para pesquisa de pacientes
     const pacientesUnificar = await selectPttsUnificar();
-    const tb_dcvs = await selectTb_mdvcUnificar()
-    await migrationDvcs(tb_dcvs)
-    const tb_emps = await selectEmpsEndCntsUnificar()
-    await migrationEmps(tb_emps)
 
+    //funções para pesquisa e inserção de dados da tabela de Dispositivos.
+    /*  const tb_dcvs = await selectTb_mdvcUnificar()
+    await migrationDvcs(tb_dcvs) */
 
+    //funções para pesquisa e inserção de dados da tabela de colaboradores.
+    /* const tb_emps = await selectEmpsEndCntsUnificar()
+    await migrationEmps(tb_emps) */
+
+    //funções e loop para inserção das tabelas de templates e exames
     const tb_exam_tb_ptlt =  await selectTb_exam_tb_ptltUnificar();
     for(var i = 0; i < tb_exam_tb_ptlt.length; i++){
         await migrationTplt(tb_exam_tb_ptlt, i)
@@ -26,35 +33,51 @@ async function migraDados(){
         const tb_exam = await selecetTb_examUnificar();
         
         await migrationExam(idtplt, tb_exam_tb_ptlt, i , tb_exam);
-    }
+    } 
     
-
+    // loop para inserção das tabelas de pacientes, contatos, documentos, relacional pacientes e documentos, laudos e imagens.
     for(var i = 0; i < pacientesUnificar.length; i++){
         console.log('entrei ', i)
+        //migração de Contatos.
         await migrationCnts(pacientesUnificar, i);
-
+        // Obter ultimo ID inserido na base de dados do ZscanEvo
         const cnts_id = await selectIdCntsZscanDatabase();
+        //Migrando tabela de pacientes.
         await migrationPtts(pacientesUnificar, i, cnts_id);
+        //Obtendo ultimo registro na base de dados do ZscanEvo
         const idpaciente = await selectIdPttsZscanDatabase();
-
+        //Buscando dados dentro da base de dados Unificar
         const tb_docs = await selectPtts_has_docsUnificar(pacientesUnificar, i);
+        //Migrando tabela de documentos.
         await migrationDocs(tb_docs);
+        //Obtendo ultimo registro de documento na base ZscanEvo
         const idDocs = await selectIdDocsZscanDatabase();
-        
+        //relacionando pacientes com documentos.
         await migrationptts_has_docs(idpaciente, idDocs);
 
         //Migração de laudos
-        const tb_rprt =  await selectRprtEndPttsUnificar(pacientesUnificar, i)
-        await migrationRprt(tb_rprt)
+        const tb_rprt =  await selectRprtEndPttsUnificar(pacientesUnificar[i].ptts_code)
+        await migrationRprt(tb_rprt, idpaciente)
 
-    }  
+        //Migração de imagens
+        const tb_imgs = await selectImgsEndPttsUnificar(pacientesUnificar, i)
+        await migrationImgs(tb_imgs,idpaciente)
+
+    }
+    console.log('#####################') 
+    console.log('Processo Finalizado')
+    console.log('#####################')
 }
+//chamada do método executante.
+migraDados()  
 
-migraDados()
 
 
+
+
+//funções de pesquisas
 async function selectPttsUnificar(){
-    const [pacientesUnificar] = await unificar.query(`select * from  tb_ptts as a inner join tb_cnts as b on a.ptts_code = b.cnts_code;`)
+    const [pacientesUnificar] = await unificar.query(`select * from  tb_ptts as a inner join tb_cnts as b on a.ptts_code = b.cnts_code where a.ptts_dhcr >= "2022-07-01";`)
     return pacientesUnificar
 }
 
@@ -108,7 +131,12 @@ async function selectEmpsEndCntsUnificar(){
     return tb_emps
 }
 
-async function selectRprtEndPttsUnificar(idpaciente, i){
-    const [tb_rprt] = await unificar.query(`select * from tb_rprt as a inner join tb_ptts as b on a.rprt_ptts = b.ptts_code inner join tb_exam as c on c.exam_code = a.rprt_exam where a.rprt_ptts = ${idpaciente[i].ptts_code};`)
+async function selectRprtEndPttsUnificar(idPaciente){
+    const [tb_rprt] = await unificar.query(`select * from tb_rprt as a inner join tb_ptts as b on a.rprt_ptts = b.ptts_code inner join tb_exam as c on c.exam_code = a.rprt_exam where a.rprt_ptts = ${idPaciente};`)
     return tb_rprt
+}
+
+async function selectImgsEndPttsUnificar(idpaciente, i){
+    const [tb_imgs] = await unificar.query(`select * from tb_imgs as a inner join tb_ptts as b on a.imgs_ptts = b.ptts_code inner join tb_exam as c on a.imgs_exam = c.exam_code where b.ptts_code = ${idpaciente[i].ptts_code};`);
+    return tb_imgs
 }

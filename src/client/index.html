@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <title>Unificar Databases</title>
+    </head>
+    <body>
+    <div class="containerPrincipal">
+
+        <center><img src="./imgs/logoZscan.png"></center>
+
+        <div class="containerTitulo">
+            <h1>Unifica Database MySQL</h1>
+        </div>
+
+        <div class="containerConteudo">
+            <h3>Selecione a Database que deseja Unificar:</h3>
+            <input type="file" id="inputFile" name="file" placeholder="Selecio o arquivo" accept=".sql">
+            <span class="textoErro"></span><br><br>
+
+
+            <h3>Selecio a data que deseja iniciar o processo de unificação:</h3>
+            <input type="date" name="date" id="inputDate" value="19/11/1999"><br><br>
+
+            <button type="button" id="buttonConfirmar">Confirmar</button>
+        </div>
+
+    </div>
+
+    <script src="./js/validacampos.js"></script>
+    </body>
+</html>
