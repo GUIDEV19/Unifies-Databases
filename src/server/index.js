@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express();
 const bodyParser = require('body-parser')
+const cors = require('cors')
+const iniciar = require('./entidades/index.js')
 const {zscan_database, unificar}  = require('./db.js')
 
 
@@ -11,13 +13,14 @@ app.use((req, res, next) =>{
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Methods', 'GET', 'POST' )
     res.header('Access-Control-Allow-Headers', 'X-PINGOTHER, Content-Type, Authorization')
+    app.use(cors())
     next();
     
 })
 
 
 
-app.use(bodyParser.urlencoded({extended: false}))
+
 app.use(bodyParser.json())
 
 
@@ -28,19 +31,20 @@ app.listen(8080, () => console.log('Seervidor iniciado'))
 
 
 
+app.get('/', function(req, res) {
+    res.send('hello world');
+});
 
-
-app.post('https://localhost:4514/api/auth', async function(req, res){
+app.get('/iniciar', async function(req, res){
     try{
-        const user = {
-            "login": "doctor",
-            "pass": "123"
-        }
-        const usuario = user
-        const token = await zscan_database.findOne(usuario);
-        res.status(200).send(JSON.stringify(token))
+        iniciar()
+        return res.status(200).send({
+                    message: 'Iniciado processo'
+                });
     }catch(erro){
-
+        return res.status(500).send({
+            message: 'Erro ao iniciar processo'
+        });
     }
 })
 

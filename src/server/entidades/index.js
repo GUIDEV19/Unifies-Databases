@@ -69,7 +69,7 @@ async function migraDados(){
     console.log('#####################')
 }
 //chamada do método executante.
-migraDados()  
+/* migraDados()   */
 
 
 
@@ -140,3 +140,5 @@ async function selectImgsEndPttsUnificar(idpaciente, i){
     const [tb_imgs] = await unificar.query(`select * from tb_imgs as a inner join tb_ptts as b on a.imgs_ptts = b.ptts_code inner join tb_exam as c on a.imgs_exam = c.exam_code where b.ptts_code = ${idpaciente[i].ptts_code};`);
     return tb_imgs
 }
+
+module.exports = migraDados  

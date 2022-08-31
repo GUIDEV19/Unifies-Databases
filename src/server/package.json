@@ -5,8 +5,7 @@
   "main": "./client/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon ./index.js",
-    "start": "electron ./client/main.js"
+    "start": "nodemon ./index.js"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +16,8 @@
   "dependencies": {
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
-    "electron": "^20.0.2",
+    "cors": "^2.8.5",
+    "electron": "^20.1.0",
     "express": "^4.18.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
