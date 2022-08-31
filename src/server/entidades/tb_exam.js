@@ -34,7 +34,7 @@ async function migrationExam(idtplt, tb_exam_tb_ptlt, i, tb_exam){
         }).catch(
             (e) => {
                 console.log(e)
-                return
+                return 
             }
         );
     }; 

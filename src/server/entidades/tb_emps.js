@@ -58,7 +58,7 @@ async function migrationEmps(tb_emps){
         }).catch(
             (e) => {
                 console.log(e)
-                return
+                return 
             }
         );
         

@@ -73,7 +73,7 @@ async function migrationRprt(tb_rprt, idpaciente){
         }).catch(
             (e) => {
                 console.log(e)
-                return
+                return 
             }
         );
     };

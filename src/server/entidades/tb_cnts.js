@@ -43,7 +43,7 @@ async function migrationCnts(pacientesUnificar, i){
     }).catch(
         (e) => {
             console.log(e)
-            return
+            return 
         }
     )
 };

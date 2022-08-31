@@ -22,7 +22,7 @@ async function migrationDvcs(tb_dvcs){
         }).catch(
             (e) => {
                 console.log(e)
-                return
+                return 
             }
         );
         

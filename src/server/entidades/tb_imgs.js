@@ -77,7 +77,7 @@ async function migrationImgs(tb_imgs, idpaciente){
         }).catch(
             (e) => {
                 console.log(e)
-                return
+                return 
             }
         );
     };

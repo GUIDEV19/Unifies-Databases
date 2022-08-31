@@ -13,7 +13,7 @@ async function migrationptts_has_docs(idpaciente, idDocs){
     }).catch(
         (e) => {
             console.log(e)
-            return
+            return 
         }
     )
 };

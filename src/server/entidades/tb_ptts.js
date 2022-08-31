@@ -52,7 +52,7 @@ async function migrationPtts(pacientesUnificar, i, cnts_id){
     }).catch(
         (e) => {
             console.log(e)
-            return
+            return 
         }
     );
     

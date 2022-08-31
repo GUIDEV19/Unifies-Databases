@@ -118,7 +118,7 @@ async function migrationTb_tplt(tb_exam_tb_ptlt, i){
         }).catch(
             (e) => {
                 console.log(e)
-                return
+                return 
             }
         ); 
     };
