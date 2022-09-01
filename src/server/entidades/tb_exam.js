@@ -20,7 +20,7 @@ async function migrationExam(idtplt, tb_exam_tb_ptlt, i, tb_exam){
             replacements: {
                 exam_name: tb_exam_tb_ptlt[i].exam_name,
                 exam_titl: tb_exam_tb_ptlt[i].exam_titl,
-                exam_tplt: idtplt[0].tplt_code,
+                exam_tplt: idtplt.tplt_code,
                 exam_lang: tb_exam_tb_ptlt[i].exam_lang ? tb_exam_tb_ptlt[i].exam_lang : 'PT-BR',
                 exam_actv: 0,
                 exam_ucrt: tb_exam_tb_ptlt[i].exam_ucrt ? tb_exam_tb_ptlt[i].exam_ucrt : null,
