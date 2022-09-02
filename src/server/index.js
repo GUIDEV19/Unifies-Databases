@@ -2,8 +2,8 @@ const express = require('express')
 const app = express();
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const iniciar = require('./entidades/index.js')
-const {zscan_database, unificar}  = require('./db.js')
+const iniciar = require('./services/migrationZscanEvo.js')
+
 
 
 
