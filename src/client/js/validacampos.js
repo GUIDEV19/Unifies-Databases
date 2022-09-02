@@ -11,9 +11,8 @@ confirmar.addEventListener('click', () => {
     }else{
         textoErro.textContent = 'Validação ok'
         textoErro.style.color = "green";
+        fetch('http://localhost:8080/iniciar')
     }
-
-    fetch('http://localhost:8080/iniciar')
 })
 
 
