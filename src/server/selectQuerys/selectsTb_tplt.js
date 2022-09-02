@@ -1,6 +1,7 @@
 const zscan_database  = require('../db.js')
 const unificar = require('../dbUnificar.js')
 
+//A pesquisa selectTb_exam_tb_ptltUnificar também é utilizada para migrar exames
 async function selectTb_exam_tb_ptltUnificar(){
     const [tb_exam_tb_ptlt] = await unificar.query(`select * from tb_tplt as a inner join tb_exam as b on b.exam_tplt = a.tplt_code;`);
     return tb_exam_tb_ptlt;
