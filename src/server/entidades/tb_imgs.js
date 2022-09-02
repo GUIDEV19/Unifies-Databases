@@ -5,41 +5,42 @@ async function migrationImgs(tb_imgs, idpaciente){
     for(i = 0; i < tb_imgs.length; i++){
         const [nomeExam] = await zscan_database.query(`select exam_code from tb_exam where exam_name = '${tb_imgs[i].exam_name}' limit 1;`);
 
-        await zscan_database.query(`insert into tb_imgs (imgs_name,imgs_exts,imgs_path,imgs_size,imgs_dims,imgs_dvcs,imgs_with,imgs_hegt,imgs_resx,imgs_resy,imgs_itst,imgs_mnft,imgs_modl,imgs_srnb,imgs_ptts,imgs_exam,imgs_emps,imgs_apnt,imgs_lgda,imgs_satn,imgs_shps,imgs_ctrs,imgs_brgs,imgs_zoom,imgs_whbl,imgs_impt,imgs_ucrt,imgs_uchd,imgs_udlt,imgs_dhcr,imgs_dhcg,imgs_dhdl) value (
-            :imgs_name,
-            :imgs_exts,
-            :imgs_path,
-            :imgs_size,
-            :imgs_dims,
-            :imgs_dvcs,
-            :imgs_with,
-            :imgs_hegt,
-            :imgs_resx,
-            :imgs_resy,
-            :imgs_itst,
-            :imgs_mnft,
-            :imgs_modl,
-            :imgs_srnb,
-            :imgs_ptts,
-            :imgs_exam,
-            :imgs_emps,
-            :imgs_apnt,
-            :imgs_lgda,
-            :imgs_satn,
-            :imgs_shps,
-            :imgs_ctrs,
-            :imgs_brgs,
-            :imgs_zoom,
-            :imgs_whbl,
-            :imgs_impt,
-            :imgs_ucrt,
-            :imgs_uchd,
-            :imgs_udlt,
-            :imgs_dhcr,
-            :imgs_dhcg,
-            :imgs_dhdl
-        );`,{
-            replacements:{
+        await zscan_database.query({
+            query: `insert into tb_imgs (imgs_name,imgs_exts,imgs_path,imgs_size,imgs_dims,imgs_dvcs,imgs_with,imgs_hegt,imgs_resx,imgs_resy,imgs_itst,imgs_mnft,imgs_modl,imgs_srnb,imgs_ptts,imgs_exam,imgs_emps,imgs_apnt,imgs_lgda,imgs_satn,imgs_shps,imgs_ctrs,imgs_brgs,imgs_zoom,imgs_whbl,imgs_impt,imgs_ucrt,imgs_uchd,imgs_udlt,imgs_dhcr,imgs_dhcg,imgs_dhdl) value (
+                :imgs_name,
+                :imgs_exts,
+                :imgs_path,
+                :imgs_size,
+                :imgs_dims,
+                :imgs_dvcs,
+                :imgs_with,
+                :imgs_hegt,
+                :imgs_resx,
+                :imgs_resy,
+                :imgs_itst,
+                :imgs_mnft,
+                :imgs_modl,
+                :imgs_srnb,
+                :imgs_ptts,
+                :imgs_exam,
+                :imgs_emps,
+                :imgs_apnt,
+                :imgs_lgda,
+                :imgs_satn,
+                :imgs_shps,
+                :imgs_ctrs,
+                :imgs_brgs,
+                :imgs_zoom,
+                :imgs_whbl,
+                :imgs_impt,
+                :imgs_ucrt,
+                :imgs_uchd,
+                :imgs_udlt,
+                :imgs_dhcr,
+                :imgs_dhcg,
+                :imgs_dhdl
+            );`,
+            values: {
                 imgs_name: tb_imgs[i].imgs_name,
                 imgs_exts: tb_imgs[i].imgs_exts,
                 imgs_path: tb_imgs[i].imgs_path,
@@ -72,8 +73,7 @@ async function migrationImgs(tb_imgs, idpaciente){
                 imgs_dhcr: tb_imgs[i].imgs_dhcr ? formataData(tb_imgs[i].imgs_dhcr) : '2018-10-30 19:54:37',
                 imgs_dhcg: tb_imgs[i].imgs_dhcg ? formataData(tb_imgs[i].imgs_dhcg) : '2018-10-30 19:54:37',
                 imgs_dhdl: tb_imgs[i].imgs_dhdl ? formataData(tb_imgs[i].imgs_dhdl) : null
-            },
-            type: zscan_database.INSERT
+            }
         }).catch(
             (e) => {
                 console.log(e)

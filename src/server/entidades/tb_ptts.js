@@ -1,5 +1,6 @@
 const zscan_database  = require('../db.js')
 const formataData = require('../utils/formatDate.js')
+const validateName = require('../utils/validateName.js')
 
 async function migrationPtts(pacientesUnificar, i, cnts_id){
 
@@ -27,9 +28,9 @@ async function migrationPtts(pacientesUnificar, i, cnts_id){
             :ptts_dhdl
         );`,
         values: {
-            ptts_fnme: pacientesUnificar[i].ptts_fnme ? pacientesUnificar[i].ptts_fnme.replace(/[^a-zA-Z ]/g, "") : 'GENERIC',
-            ptts_mnme: pacientesUnificar[i].ptts_mnme ? pacientesUnificar[i].ptts_mnme.replace(/[^a-zA-Z ]/g, "") : null,
-            ptts_lnme: pacientesUnificar[i].ptts_lnme ? pacientesUnificar[i].ptts_lnme.replace(/[^a-zA-Z ]/g, "") : 'GENERIC',
+            ptts_fnme: pacientesUnificar[i].ptts_fnme ? validateName(pacientesUnificar[i].ptts_fnme) : 'GENERIC',
+            ptts_mnme: pacientesUnificar[i].ptts_mnme ? validateName(pacientesUnificar[i].ptts_mnme) : null,
+            ptts_lnme: pacientesUnificar[i].ptts_lnme ? validateName(pacientesUnificar[i].ptts_lnme) : 'GENERIC',
             ptts_mtnm: pacientesUnificar[i].ptts_mtnm ? pacientesUnificar[i].ptts_mtnm : 'GENERIC',
             ptts_ftnm: pacientesUnificar[i].ptts_ftnm ? pacientesUnificar[i].ptts_ftnm : null,
             ptts_cnts: cnts_id[0].cnts_code ? cnts_id[0].cnts_code : 1,
