@@ -3,7 +3,7 @@ const formataData = require('../utils/formatDate.js')
 
 async function migrationExam(idtplt, tb_exam_tb_ptlt, i, tb_exam){
 
-    if(i < tb_exam.length){
+    if(i <= tb_exam.length){
         await zscan_database.query({
             query: `insert into tb_exam (exam_name, exam_titl, exam_tplt, exam_lang, exam_actv, exam_ucrt, exam_uchd, exam_udlt, exam_dhcr, exam_dhcg, exam_dhdl) values (
                 :exam_name,
@@ -21,7 +21,7 @@ async function migrationExam(idtplt, tb_exam_tb_ptlt, i, tb_exam){
             values: {
                 exam_name: tb_exam_tb_ptlt[i].exam_name,
                 exam_titl: tb_exam_tb_ptlt[i].exam_titl,
-                exam_tplt: idtplt.tplt_code,
+                exam_tplt: idtplt[0].tplt_code,
                 exam_lang: tb_exam_tb_ptlt[i].exam_lang ? tb_exam_tb_ptlt[i].exam_lang : 'PT-BR',
                 exam_actv: 0,
                 exam_ucrt: tb_exam_tb_ptlt[i].exam_ucrt ? tb_exam_tb_ptlt[i].exam_ucrt : null,
