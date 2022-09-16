@@ -1,4 +1,5 @@
 const unificar = require('../dbUnificar.js')
+const zscan_database = require('../db.js')
 
 async function selectRprtEndPttsUnificar(idPaciente){
     const [tb_rprt] = await unificar.query({
@@ -10,7 +11,13 @@ async function selectRprtEndPttsUnificar(idPaciente){
     return tb_rprt
 }
 
+async function selectIdExamEndTb_tplt(tb_rprt){
+    const [nomeExam] = await zscan_database.query(`select exam_code from tb_exam inner join tb_tplt on tplt_code = exam_tplt where exam_name = '${tb_rprt}' limit 1;`);
+    return nomeExam
+}
+
 module.exports = {
-    selectRprtEndPttsUnificar
+    selectRprtEndPttsUnificar,
+    selectIdExamEndTb_tplt
 }
     
