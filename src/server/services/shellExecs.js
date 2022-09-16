@@ -1,7 +1,8 @@
 const unificar = require('../dbUnificar.js')
 const fs = require('fs')
-const dump = fs.readFileSync('C:/2022-09-02.sql', 'utf8')
-async function restoreDump(){
+
+async function restoreDump(path){
+    const dump = fs.readFileSync(`${path}`, 'utf8')
     const t = await unificar.transaction();
     await unificar.query({
         query: dump,
@@ -11,28 +12,3 @@ async function restoreDump(){
 }
 
 module.exports = restoreDump
-
-
-//flags: '-FOUND_ROWS,MULTI_STATEMENTS',
-
-/* const fs = require('fs')
-const dump = fs.readFileSync('C:/2022-09-02.sql', 'utf8')
-const mysql = require('mysql2');
-const connection =  mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    database: 'unifica',
-    port: 4914,
-    password: '4hBbQNVymFQX',
-    flags: 'MULTI_STATEMENTS'
-});
-async function restoreDump() {
-        await connection.query(dump, function(err, results){
-            console.log(err)
-        })
-        console.log('teste');
-} */
-
-
-
-/* module.exports = restoreDump */

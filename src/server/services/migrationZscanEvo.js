@@ -5,10 +5,10 @@ const restoreDump = require('./shellExecs.js');
 
 
 //função administradora de migração
-async function migraDados(){
+async function migraDados(path){
     await createSchema()
     
-    await restoreDump()
+    await restoreDump(path)
 
     //select para pesquisa de pacientes
     const pacientesUnificar = await querys.querysTbPtts.selectPttsUnificar()
