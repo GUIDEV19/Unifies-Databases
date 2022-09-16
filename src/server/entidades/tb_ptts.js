@@ -29,7 +29,7 @@ async function migrationPtts(pacientesUnificar, i, cnts_id){
         );`,
         values: {
             ptts_fnme: pacientesUnificar[i].ptts_fnme ? validateName(pacientesUnificar[i].ptts_fnme) : 'GENERIC',
-            ptts_mnme: pacientesUnificar[i].ptts_mnme ? validateName(pacientesUnificar[i].ptts_mnme) : null,
+            ptts_mnme: pacientesUnificar[i].ptts_mnme ? validateName(pacientesUnificar[i].ptts_mnme) : '',
             ptts_lnme: pacientesUnificar[i].ptts_lnme ? validateName(pacientesUnificar[i].ptts_lnme) : 'GENERIC',
             ptts_mtnm: pacientesUnificar[i].ptts_mtnm ? pacientesUnificar[i].ptts_mtnm : 'GENERIC',
             ptts_ftnm: pacientesUnificar[i].ptts_ftnm ? pacientesUnificar[i].ptts_ftnm : null,
