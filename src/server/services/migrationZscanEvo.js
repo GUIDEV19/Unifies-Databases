@@ -5,13 +5,13 @@ const restoreDump = require('./shellExecs.js');
 
 
 //função administradora de migração
-async function migraDados(path){
+async function migraDados(path, date){
     await createSchema()
     
     await restoreDump(path)
 
     //select para pesquisa de pacientes
-    const pacientesUnificar = await querys.querysTbPtts.selectPttsUnificar()
+    const pacientesUnificar = await querys.querysTbPtts.selectPttsUnificar(date)
 
     //funções para pesquisa e inserção de dados da tabela de Dispositivos.
     const tb_dcvs = await querys.querysTbdvcs.selectTb_mdvcUnificar()

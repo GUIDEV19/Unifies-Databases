@@ -1,6 +1,7 @@
 const inputfile = document.getElementById('inputFile');
 const textoErro = document.querySelector('.textoErro');
 const confirmar = document.querySelector('#buttonConfirmar');
+const data = document.getElementById('inputDate')
 
 
 
@@ -13,8 +14,10 @@ confirmar.addEventListener('click', () => {
             
             textoErro.textContent = 'Validação ok'
             textoErro.style.color = "green";
+            console.log(data.value)
             var body = {
-                caminho:  inputfile.files[0].path
+                caminho:  inputfile.files[0].path,
+                data: data.value
             } 
             console.log(body)
 
