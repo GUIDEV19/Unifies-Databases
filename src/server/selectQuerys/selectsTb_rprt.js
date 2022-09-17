@@ -1,5 +1,5 @@
-const unificar = require('../dbUnificar.js')
-const zscan_database = require('../db.js')
+const unificar = require('../config/dbUnificar.js')
+const zscan_database = require('../config/db.js')
 
 async function selectRprtEndPttsUnificar(idPaciente){
     const [tb_rprt] = await unificar.query({

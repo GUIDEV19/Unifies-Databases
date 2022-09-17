@@ -1,4 +1,4 @@
-const zscan_database  = require('../db.js')
+const zscan_database  = require('../config/db.js')
 const formataData = require('../utils/formatDate.js')
 
 async function migrationDvcs(tb_dvcs){

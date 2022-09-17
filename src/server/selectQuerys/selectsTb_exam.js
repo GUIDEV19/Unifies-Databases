@@ -1,5 +1,5 @@
-const zscan_database  = require('../db.js')
-const unificar = require('../dbUnificar.js')
+const zscan_database  = require('../config/db.js')
+const unificar = require('../config/dbUnificar.js')
 
 async function selecetTb_examUnificar(){
     const [tb_exam] = await unificar.query(`select * from tb_exam;`);

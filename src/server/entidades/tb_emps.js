@@ -1,4 +1,4 @@
-const zscan_database  = require('../db.js')
+const zscan_database  = require('../config/db.js')
 const formataData = require('../utils/formatDate.js')
 const migrationCnts = require('./tb_cnts')
 const querys = require('../selectQuerys/index.js')

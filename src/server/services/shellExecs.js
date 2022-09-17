@@ -1,4 +1,4 @@
-const unificar = require('../dbUnificar.js')
+const unificar = require('../config/dbUnificar.js')
 const fs = require('fs')
 
 async function restoreDump(path){
