@@ -30,10 +30,12 @@ confirmar.addEventListener('click', () => {
                 body: JSON.stringify(body)
                 
             }
-
+            confirmar.style.opacity = '0.4'
+            confirmar.style.cursor = 'default'
             const response = await fetch(`http://localhost:8080/iniciar`, init)
             const dados = await response.json()
             console.log(dados)
+            
         }
     }
 
