@@ -1,6 +1,6 @@
-const zscan_database  = require('../config/db.js')
-const formataData = require('../utils/formatDate.js')
-const validateName = require('../utils/validateName.js')
+const zscan_database  = require('../../config/db.js')
+const formataData = require('../../utils/formatDate.js')
+const validateName = require('../../utils/validateName.js')
 
 async function migrationPtts(pacientesUnificar, i, cnts_id){
 

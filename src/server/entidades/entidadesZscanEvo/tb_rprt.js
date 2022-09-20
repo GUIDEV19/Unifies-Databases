@@ -1,6 +1,6 @@
-const zscan_database  = require('../config/db.js')
-const formataData = require('../utils/formatDate.js')
-const idExam = require('../selectQuerys/index.js')
+const zscan_database  = require('../../config/db.js')
+const formataData = require('../../utils/formatDate.js')
+const idExam = require('../../selectQuerys/querysZscanEvo/index.js')
 
 async function migrationRprt(tb_rprt, idpaciente){
     for(i = 0; i < tb_rprt.length; i++){

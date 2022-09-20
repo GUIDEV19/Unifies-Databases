@@ -1,4 +1,4 @@
-const unificar = require('../config/dbUnificar.js')
+const unificar = require('../../config/dbUnificar.js')
 
 async function selectImgsEndPttsUnificar(idpaciente){
     const [tb_imgs] = await unificar.query({

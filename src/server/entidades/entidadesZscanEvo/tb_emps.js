@@ -1,7 +1,7 @@
-const zscan_database  = require('../config/db.js')
-const formataData = require('../utils/formatDate.js')
+const zscan_database  = require('../../config/db.js')
+const formataData = require('../../utils/formatDate.js')
 const migrationCnts = require('./tb_cnts')
-const querys = require('../selectQuerys/index.js')
+const querys = require('../../selectQuerys/querysZscanEvo/index.js')
 
 async function migrationEmps(tb_emps){
 

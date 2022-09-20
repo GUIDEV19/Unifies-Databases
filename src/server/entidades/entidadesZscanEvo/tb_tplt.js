@@ -1,5 +1,5 @@
-const zscan_database  = require('../config/db.js')
-const formataData = require('../utils/formatDate.js')
+const zscan_database  = require('../../config/db.js')
+const formataData = require('../../utils/formatDate.js')
 
 async function migrationTb_tplt(tb_exam_tb_ptlt, i){
     if(i < tb_exam_tb_ptlt.length){

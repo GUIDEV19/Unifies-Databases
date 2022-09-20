@@ -1,5 +1,5 @@
-const zscan_database  = require('../config/db.js')
-const formataData = require('../utils/formatDate.js')
+const zscan_database  = require('../../config/db.js')
+const formataData = require('../../utils/formatDate.js')
 const path = require('path');
 
 async function migrationImgs(tb_imgs, idpaciente){

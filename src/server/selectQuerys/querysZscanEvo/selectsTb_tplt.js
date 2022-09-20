@@ -1,5 +1,5 @@
-const zscan_database  = require('../config/db.js')
-const unificar = require('../config/dbUnificar.js')
+const zscan_database  = require('../../config/db.js')
+const unificar = require('../../config/dbUnificar.js')
 
 //A pesquisa selectTb_exam_tb_ptltUnificar também é utilizada para migrar exames
 async function selectTb_exam_tb_ptltUnificar(){

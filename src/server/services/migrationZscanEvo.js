@@ -1,5 +1,5 @@
-const querys = require('../selectQuerys/index.js');
-const migrations = require('../entidades/index.js');
+const querys = require('../selectQuerys/querysZscanEvo/index.js');
+const migrations = require('../entidades/entidadesZscanEvo/index.js');
 const createSchema = require('./CreateSchema.js')
 const restoreDump = require('./shellExecs.js');
 

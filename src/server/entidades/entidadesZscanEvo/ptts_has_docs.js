@@ -1,4 +1,4 @@
-const zscan_database  = require('../config/db.js')
+const zscan_database  = require('../../config/db.js')
 
 
 

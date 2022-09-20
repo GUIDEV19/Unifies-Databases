@@ -1,4 +1,4 @@
-const zscan_database  = require('../config/db.js')
+const zscan_database  = require('../../config/db.js')
 
 //A função de pesquisa para obter os dados da tb_cnts esta localizada em selectsTb_ptts.js
 

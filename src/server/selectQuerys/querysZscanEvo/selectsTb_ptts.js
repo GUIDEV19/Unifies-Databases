@@ -1,5 +1,5 @@
-const zscan_database  = require('../config/db.js')
-const unificar = require('../config/dbUnificar.js')
+const zscan_database  = require('../../config/db.js')
+const unificar = require('../../config/dbUnificar.js')
 
 
 //A função selectPttsUnifica faz um inner Join com tb_cnts e aproveita esse inner join para inserir os dados de contatos do paciente
