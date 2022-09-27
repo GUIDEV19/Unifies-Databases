@@ -1,27 +1,28 @@
-const zscan_database  = require('../db.js')
-const formataData = require('../utils/formatDate.js')
+const zscan_database  = require('../../config/db.js')
+const formataData = require('../../utils/formatDate.js')
 
 async function migrationCnts(pacientesUnificar, i){
 
-    await zscan_database.query(`insert into tb_cnts (cnts_phn1, cnts_phn2, cnts_cel1, cnts_cel2, cnts_eml1, cnts_eml2, cnts_site, cnts_adpp, cnts_adst, cnts_adnr, cnts_adnh, cnts_adzc, cnts_city, cnts_dhcr, cnts_dhcg, cnts_dhdl ) value (
-        :cnts_phn1,
-        :cnts_phn2, 
-        :cnts_cel1, 
-        :cnts_cel2, 
-        :cnts_eml1, 
-        :cnts_eml2, 
-        :cnts_site, 
-        :cnts_adpp, 
-        :cnts_adst, 
-        :cnts_adnr, 
-        :cnts_adnh, 
-        :cnts_adzc, 
-        :cnts_city, 
-        :cnts_dhcr, 
-        :cnts_dhcg, 
-        :cnts_dhdl
-        )`,{
-        replacements:{
+    await zscan_database.query({
+        query: `insert into tb_cnts (cnts_phn1, cnts_phn2, cnts_cel1, cnts_cel2, cnts_eml1, cnts_eml2, cnts_site, cnts_adpp, cnts_adst, cnts_adnr, cnts_adnh, cnts_adzc, cnts_city, cnts_dhcr, cnts_dhcg, cnts_dhdl ) value (
+            :cnts_phn1,
+            :cnts_phn2, 
+            :cnts_cel1, 
+            :cnts_cel2, 
+            :cnts_eml1, 
+            :cnts_eml2, 
+            :cnts_site, 
+            :cnts_adpp, 
+            :cnts_adst, 
+            :cnts_adnr, 
+            :cnts_adnh, 
+            :cnts_adzc, 
+            :cnts_city, 
+            :cnts_dhcr, 
+            :cnts_dhcg, 
+            :cnts_dhdl
+            )`,
+        values: {
             cnts_phn1: pacientesUnificar[i].cnts_phn1 ? pacientesUnificar[i].cnts_phn1 : null,
             cnts_phn2: pacientesUnificar[i].cnts_phn2 ? pacientesUnificar[i].cnts_phn2 : null,
             cnts_cel1: pacientesUnificar[i].cnts_cel1 ? pacientesUnificar[i].cnts_cel1 : null,
@@ -38,8 +39,7 @@ async function migrationCnts(pacientesUnificar, i){
             cnts_dhcr: pacientesUnificar[i].cnts_dhcr ? formataData(pacientesUnificar[i].cnts_dhcr) : '2018-10-30 19:54:37',
             cnts_dhcg: pacientesUnificar[i].cnts_dhcg ? formataData(pacientesUnificar[i].cnts_dhcg) : '2018-10-30 19:54:37',
             cnts_dhdl: pacientesUnificar[i].cnts_dhdl ? formataData(pacientesUnificar[i].cnts_dhdl) : null
-        },
-        type: zscan_database.INSERT
+        }
     }).catch(
         (e) => {
             console.log(e)

@@ -1,12 +1,12 @@
-const zscan_database  = require('../db.js')
-const formataData = require('../utils/formatDate.js')
+const zscan_database  = require('../../config/db.js')
+const formataData = require('../../utils/formatDate.js')
+const idExam = require('../../selectQuerys/querysZscanEvo/index.js')
 
 async function migrationRprt(tb_rprt, idpaciente){
     for(i = 0; i < tb_rprt.length; i++){
-        const [nomeExam] = await zscan_database.query({
-            query: `select exam_code from tb_exam inner join tb_tplt on tplt_code = exam_tplt where exam_name = ? limit 1;`,
-            values: [tb_rprt[i].exam_name]
-        });
+        console.log(tb_rprt[i].exam_name)
+        const nomeExam = await idExam.querysTbrprt.selectIdExamEndTb_tplt(tb_rprt[i].exam_name)
+
         await zscan_database.query({
             query: `insert into tb_rprt (rprt_dctr, rprt_reqs, rprt_tech, rprt_anth, rprt_nrse, rprt_daux, rprt_ptts, rprt_dvcs, rprt_hpbk, rprt_exam, rprt_apnt, rprt_rslt, rprt_rpby, rprt_copy, rprt_pnam, rprt_ppth, rprt_psze, rprt_dtex, rprt_dtrr, rprt_drft, rprt_ucrt, rprt_uchd, rprt_udlt, rprt_clse, rprt_sync, rprt_ukey, rprt_dhcr, rprt_dhcg, rprt_dhdl) value (
                 :rprt_dctr,
@@ -50,7 +50,7 @@ async function migrationRprt(tb_rprt, idpaciente){
                 rprt_dvcs: tb_rprt[i].rprt_dvcs ? tb_rprt[i].rprt_dvcs : null,
                 rprt_hpbk: tb_rprt[i].rprt_hpbk ? tb_rprt[i].rprt_hpbk : null,
                 rprt_exam: nomeExam[0].exam_code,
-                rprt_apnt: tb_rprt[i].rprt_apnt ? tb_rprt[i].rprt_apnt : null,
+                rprt_apnt: null,
                 rprt_rslt: tb_rprt[i].rprt_rslt ? tb_rprt[i].rprt_rslt : null,
                 rprt_rpby: tb_rprt[i].rprt_rpby ? tb_rprt[i].rprt_rpby : 0,
                 rprt_copy: tb_rprt[i].rprt_copy ? tb_rprt[i].rprt_copy : 0,
@@ -76,6 +76,9 @@ async function migrationRprt(tb_rprt, idpaciente){
                 return 
             }
         );
+
+
+       
     };
 };
 

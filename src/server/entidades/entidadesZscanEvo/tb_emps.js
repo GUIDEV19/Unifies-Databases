@@ -1,37 +1,39 @@
-const zscan_database  = require('../db.js')
-const formataData = require('../utils/formatDate.js')
+const zscan_database  = require('../../config/db.js')
+const formataData = require('../../utils/formatDate.js')
 const migrationCnts = require('./tb_cnts')
+const querys = require('../../selectQuerys/querysZscanEvo/index.js')
 
 async function migrationEmps(tb_emps){
 
     for(i = 0; i < tb_emps.length; i++){
         await migrationCnts(tb_emps, i);
-        const [idCnts] = await zscan_database.query(`select cnts_code from tb_cnts ORDER BY cnts_code desc limit 1;`);
+        const idCnts = await querys.querysTbcnts.selectIdCntsZscanDatabase()
 
-        await zscan_database.query(`insert into tb_emps (emps_fnme, emps_mnme, emps_lnme, emps_brdt, emps_gndr, emps_mrst, emps_phto, emps_sign, emps_tsgn, emps_ocps, emps_cnts, emps_ilps, emps_ilsc, emps_ills, emps_sprc, emps_ucrt, emps_uchd, emps_udlt, emps_dhcr, emps_dhcg, emps_dhdl) value (
-            :emps_fnme, 
-            :emps_mnme, 
-            :emps_lnme, 
-            :emps_brdt, 
-            :emps_gndr, 
-            :emps_mrst, 
-            :emps_phto, 
-            :emps_sign, 
-            :emps_tsgn, 
-            :emps_ocps, 
-            :emps_cnts, 
-            :emps_ilps, 
-            :emps_ilsc, 
-            :emps_ills, 
-            :emps_sprc, 
-            :emps_ucrt, 
-            :emps_uchd, 
-            :emps_udlt, 
-            :emps_dhcr, 
-            :emps_dhcg, 
-            :emps_dhdl
-        );`,{
-            replacements: {
+        await zscan_database.query({
+            query: `insert into tb_emps (emps_fnme, emps_mnme, emps_lnme, emps_brdt, emps_gndr, emps_mrst, emps_phto, emps_sign, emps_tsgn, emps_ocps, emps_cnts, emps_ilps, emps_ilsc, emps_ills, emps_sprc, emps_ucrt, emps_uchd, emps_udlt, emps_dhcr, emps_dhcg, emps_dhdl) value (
+                :emps_fnme, 
+                :emps_mnme, 
+                :emps_lnme, 
+                :emps_brdt, 
+                :emps_gndr, 
+                :emps_mrst, 
+                :emps_phto, 
+                :emps_sign, 
+                :emps_tsgn, 
+                :emps_ocps, 
+                :emps_cnts, 
+                :emps_ilps, 
+                :emps_ilsc, 
+                :emps_ills, 
+                :emps_sprc, 
+                :emps_ucrt, 
+                :emps_uchd, 
+                :emps_udlt, 
+                :emps_dhcr, 
+                :emps_dhcg, 
+                :emps_dhdl
+            );`,
+            values: {
                 emps_fnme: tb_emps[i].emps_fnme ? tb_emps[i].emps_fnme : 'GENERIC',
                 emps_mnme: tb_emps[i].emps_mnme ? tb_emps[i].emps_mnme : null,
                 emps_lnme: tb_emps[i].emps_lnme ? tb_emps[i].emps_lnme : 'GENERIC',
@@ -53,8 +55,7 @@ async function migrationEmps(tb_emps){
                 emps_dhcr: tb_emps[i].emps_dhcr ?  formataData(tb_emps[i].emps_dhcr) : '2018-10-30 19:54:37',
                 emps_dhcg: tb_emps[i].emps_dhcg ?  formataData(tb_emps[i].emps_dhcg) : '2018-10-30 19:54:37',
                 emps_dhdl: tb_emps[i].emps_dhdl ?  formataData(tb_emps[i].emps_dhdl) : null
-            },
-            type: zscan_database.INSERT
+            }
         }).catch(
             (e) => {
                 console.log(e)

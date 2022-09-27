@@ -1,5 +1,5 @@
-const zscan_database  = require('../db.js')
-const formataData = require('../utils/formatDate.js')
+const zscan_database  = require('../../config/db.js')
+const formataData = require('../../utils/formatDate.js')
 
 async function migrationTb_tplt(tb_exam_tb_ptlt, i){
     if(i < tb_exam_tb_ptlt.length){
@@ -112,7 +112,7 @@ async function migrationTb_tplt(tb_exam_tb_ptlt, i){
                 tplt_udlt: tb_exam_tb_ptlt[i].tplt_udlt ? tb_exam_tb_ptlt[i].tplt_udlt : null,
                 tplt_dhcr: tb_exam_tb_ptlt[i].tplt_dhcr ? formataData(tb_exam_tb_ptlt[i].tplt_dhcr) : '2018-10-30 19:54:37',
                 tplt_dhcg: tb_exam_tb_ptlt[i].tplt_dhcg ? formataData(tb_exam_tb_ptlt[i].tplt_dhcg) : '2018-10-30 19:54:37',
-                tplt_dhdl: tb_exam_tb_ptlt[i].tplt_dhcg ? formataData(tb_exam_tb_ptlt[i].tplt_dhcg) : null
+                tplt_dhdl: tb_exam_tb_ptlt[i].tplt_dhdl ? formataData(tb_exam_tb_ptlt[i].tplt_dhdl) : null
 
             }
         }).catch(
