@@ -2,7 +2,7 @@
 
 class UtilsIkap {
 
-    static async formatsexo(sexo){
+    static formatsexo(sexo){
         let format = sexo.replace(/\s/g, '')
         if(format == 'M'){
             return 1;
@@ -15,23 +15,21 @@ class UtilsIkap {
         };
     };
 
-    static async formatdate(date){
+    static formatdate(date){
         let mes = date.getMonth() + 1;
         let format =  `${date.getFullYear()}-${mes}-${date.getDate()}`;
         return format;
     };
 
-    static async formatEstadoCivil(estado_civil){
+    static formatEstadoCivil(estado_civil){
         if(estado_civil == 'Solteiro(a)'){
-            let estd_cvil = 1;
-            return estd_cvil;
+            return 1;
         }else{
-            let estd_cvil = 5;
-            return estd_cvil;
+            return 5;
         };
     };
 
-    static async formatNome(name){
+    static formatNome(name){
         let parts = name.split(' ');
         let firstName;
         let middleName;
@@ -60,12 +58,15 @@ class UtilsIkap {
         }
     }
 
-    static async formatDoc(doc){
-        const format = doc.replace(/[\(\)\.\s-]+/g,'')
-        return format
+    static formatDoc(doc){
+        return doc.replace(/[\(\)\.\s-]+/g,'')
     }
 
-    static async formatFone(fone){
+    static formatCEP(cep){
+        return cep.replace(/[-]+/g,'')
+    }
+
+    static formatFone(fone){
         const format = fone.replace(/[\(\)\.\s-]+/g,'')
         const separaFone = format.split('/')
         return separaFone
