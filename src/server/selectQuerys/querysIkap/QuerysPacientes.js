@@ -2,30 +2,40 @@ const Options = require('../../config/ikap.js')
 const Firebird = require('node-firebird')
 
 class QuerysPacientes {
+
     static async selectPacientes(){
-        try{
+
+        return new Promise( (resolve, reject)=>{
             Firebird.attach(Options.dbOptions, function(err, db) {
-            
+        
                 if (err){
-                    return console.log(err);
+                    reject(err);
                 };
                 // db = DATABASE
-                db.query('SELECT * FROM PACIENTES;', function(err, result) {
+                 db.query('SELECT * FROM PACIENTES;', function(err, result) {
                     
                     db.detach();
                     if (err){
-                        return console.log(err);
+                        reject(err);
                     } else{
-                        return result;
+                        resolve(result);
                     };
+                    
                 });
             });
-        }catch (err){
-            return console.log(err.json())
-        }
+        })
         
     }
+        
 }
+
+async function teste(){
+    console.log(await QuerysPacientes.selectPacientes())
+}
+
+teste()
+
+
 
 module.exports =  QuerysPacientes
 
