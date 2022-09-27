@@ -7,6 +7,7 @@ const querysTbrprt = require('./selectsTb_rprt.js')
 const querysTbimgs = require('./selectsTb_imgs.js')
 const querysTbemps = require('./selectsTb_emps.js')
 const querysTbdvcs = require('./selectsTb_dvcs.js')
+const querysTbcity = require('./selectsTb_city.js')
 
 module.exports = {
     querysTbPtts,
@@ -17,5 +18,6 @@ module.exports = {
     querysTbrprt,
     querysTbimgs,
     querysTbemps,
-    querysTbdvcs
+    querysTbdvcs,
+    querysTbcity
 }
