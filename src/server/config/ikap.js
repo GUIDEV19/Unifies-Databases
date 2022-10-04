@@ -1,7 +1,7 @@
 const dbOptions = {
     host: '127.0.0.1',
-    port: 3053,
-    database: 'C:\\BANCO\\BASER.FDB',
+    port: 3050,
+    database: 'C:\\iKap\\tabelas\\BASE.FDB',
     user: 'SYSDBA',
     password: 'masterkey',
     role: null,

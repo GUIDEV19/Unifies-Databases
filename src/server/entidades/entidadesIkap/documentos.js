@@ -2,7 +2,7 @@ const zscan_database  = require('../../config/db.js')
 const formataData = require('../../utils/formatDate.js')
 const utils = require('../../utils/ikapUtils.js')
 
-async function migrationDocumentos(result){
+async function migrationDocumentosIkap(result){
 
     await zscan_database.query({
         query: `insert into tb_docs (docs_type, docs_numb, docs_extr, docs_dhcr, docs_dhcg, docs_dhdl) values (?,?,?,?,?,?);`,
@@ -17,4 +17,4 @@ async function migrationDocumentos(result){
     })
 };
 
-module.exports = migrationDocumentos
+module.exports = migrationDocumentosIkap

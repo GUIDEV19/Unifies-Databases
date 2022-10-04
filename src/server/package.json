@@ -24,6 +24,7 @@
     "node-firebird": "^1.0.0",
     "path": "^0.12.7",
     "sequelize": "^6.21.0",
-    "shelljs": "^0.8.5"
+    "shelljs": "^0.8.5",
+    "uuid": "^9.0.0"
   }
 }
