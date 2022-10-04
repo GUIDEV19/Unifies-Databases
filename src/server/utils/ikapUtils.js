@@ -1,5 +1,3 @@
-
-
 class UtilsIkap {
 
     static formatsexo(sexo){
@@ -45,13 +43,13 @@ class UtilsIkap {
         } else {
             firstName = name;
         }
-    
+
         return {
             firstName,
             middleName,
             lastName
         }
-    
+
         function getLastName(name, index) {
             let auxlastName = name.splice(index).join(' ');
             return auxlastName;
@@ -70,7 +68,6 @@ class UtilsIkap {
         const format = fone.replace(/[\(\)\.\s-]+/g,'')
         const separaFone = format.split('/')
         return separaFone
-
     }
 }
 
