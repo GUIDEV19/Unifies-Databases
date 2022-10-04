@@ -5,9 +5,20 @@ const entidadesZscanEvo = require('../entidades/entidadesZscanEvo/index.js')
 
 
 async function migrationIkap(){
-    const result = await QuerysIkap.Pacientes.selectPacientes();
+    /* const result = await QuerysIkap.Pacientes.selectPacientes(); */
+    const modelo = await QuerysIkap.Modelos.selectModelo();
+    const exame = await QuerysIkap.Exames.selectExame(); 
 
-    for(var i = 0; i < result.length; i++){
+    console.log(modelo)
+    for(var i = 0; i < modelo.length; i++){
+        await migrationsIkap.modelos(modelo[i], i)
+    }
+
+    for(var i = 0; i < modelo.length; i++){
+        const idModelo = await querysZscanEvo.querysTbtplt
+    }
+
+/*     for(var i = 0; i < result.length; i++){
         const idCits = await querysZscanEvo.querysTbcity.selectCytsId(result[i].cidade)
         await migrationsIkap.contatos(result[i], idCits[0].cits_code)
 
@@ -19,7 +30,7 @@ async function migrationIkap(){
 
         const idPtts = await querysZscanEvo.querysTbPtts.selectIdPttsZscanDatabase()
         await entidadesZscanEvo.migrationptts_has_docs(idPtts, idDocs)
-    } 
+    }  */
 }
 
 migrationIkap()
